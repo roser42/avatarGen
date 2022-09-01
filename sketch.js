@@ -2,13 +2,6 @@ var grid = [];
 const rows = 31;
 var canv, col, bgCol;
 
-var a = [
-  [1, 0, 0, 0, 1],
-  [0, 1, 0, 1, 0],
-  [1, 0, 1, 0, 0],
-  [0, 1, 0, 1, 0],
-  [1, 0, 0, 0, 1],
-];
 var colors = [
   [111, 191, 183],
   [242, 198, 65],
@@ -19,8 +12,6 @@ var colors = [
 ];
 
 function setup() {
-
-
   canv = createCanvas(400, 400);
   for (let i = 0; i < rows; i++) {
     const tiles = [];
@@ -102,7 +93,6 @@ function rand(min, max) {
 }
 
 function getColor() {
-  // grab a fil color
   let col;
 
   if (random() < 0.8) {
