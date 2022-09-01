@@ -1,6 +1,6 @@
 var grid = [];
 const rows = 31;
-var col, bgCol;
+var canv, col, bgCol;
 
 var a = [
   [1, 0, 0, 0, 1],
@@ -21,7 +21,7 @@ var colors = [
 function setup() {
 
 
-  createCanvas(400, 400);
+  canv = createCanvas(400, 400);
   for (let i = 0; i < rows; i++) {
     const tiles = [];
     for (let i = 0; i < rows; i++) {
@@ -29,18 +29,13 @@ function setup() {
     }
     grid[i] = tiles;
   }
-  col = createColorPicker('#ffffff');
-  bgCol = createColorPicker('#000000');
-  background(bgCol.color());
-  drowPixels();
-}
-
-function mousePressed() {
-  clearCtx();
+  bgCol = '#000000';
+  background(bgCol);
   drowPixels();
 }
 
 function drowPixels() {
+  clearCtx();
   let offsetX = 5;
   let offsetY = 5;
 
@@ -93,7 +88,7 @@ function genFigure() {
 
 function clearCtx() {
   clear();
-  background(bgCol.color());
+  background(bgCol);
   for (let x = 0; x < rows; x++) {
     for (let y = 0; y < rows; y++) {
       grid[x][y].active = 0
@@ -117,3 +112,10 @@ function getColor() {
   }
   return col;
 }
+
+function save() {
+  saveCanvas(canv, 'avatar', 'png');
+}
+
+document.getElementById("save").addEventListener("click", () => save());
+document.getElementById("gen").addEventListener("click", () => drowPixels());
