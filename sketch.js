@@ -36,8 +36,16 @@ const palette4 = [
   [80, 191, 191]
 ];
 
+const palette5 = [
+  [222, 26, 26],
+  [232, 235, 247],
+  [172, 190, 216],
+  [242, 211, 152],
+  [215, 133, 33],
+];
+
 //#endregion
-const patlettes = [palette1, palette2, palette3, palette4];
+const patlettes = [palette1, palette2, palette3, palette4, palette5];
 
 function setup() {
   canv = createCanvas(400, 400);
