@@ -1,8 +1,33 @@
-var grid = [];
+let grid = [];
 const rows = 31;
-var canv, col, bgCol;
+let canv, col, bgCol, curPalette;
 
-var colors = [
+//#region Palettes
+const palette1 = [
+  [255, 185, 151],
+  [246, 126, 125],
+  [132, 59, 98],
+  [110, 3, 45],
+  [116, 84, 106],
+];
+
+const palette2 = [
+  [186, 209, 205],
+  [242, 209, 201],
+  [224, 134, 211],
+  [131, 50, 172],
+  [70, 39, 73],
+];
+
+const palette3 = [
+  [57, 0, 153],
+  [158, 0, 89],
+  [255, 0, 84],
+  [255, 84, 0],
+  [255, 189, 0],
+];
+
+const palette4 = [
   [111, 191, 183],
   [242, 198, 65],
   [242, 149, 68],
@@ -10,6 +35,9 @@ var colors = [
   [3, 101, 140],
   [80, 191, 191]
 ];
+
+//#endregion
+const patlettes = [palette1, palette2, palette3, palette4];
 
 function setup() {
   canv = createCanvas(400, 400);
@@ -21,12 +49,16 @@ function setup() {
     grid[i] = tiles;
   }
   bgCol = '#000000';
+  curPalette = randArrEl(patlettes);
+  console.log(curPalette);
   background(bgCol);
   drowPixels();
 }
 
 function drowPixels() {
   clearCtx();
+  curPalette = randArrEl(patlettes);
+
   let offsetX = 5;
   let offsetY = 5;
 
@@ -64,7 +96,6 @@ function renderBoard() {
   }
 }
 
-
 function genFigure() {
   const figure = [];
 
@@ -92,15 +123,12 @@ function rand(min, max) {
   return rnd;
 }
 
-function getColor() {
-  let col;
+function randArrEl(arr) {
+  return arr[rand(0, arr.length)];
+}
 
-  if (random() < 0.8) {
-    col = colors[parseInt(random(colors.length))];
-  } else {
-    col = 100;
-  }
-  return col;
+function getColor() {
+  return curPalette[rand(0, curPalette.length)];
 }
 
 function save() {
